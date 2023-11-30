@@ -75,12 +75,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
           List<dynamic> platillos = categoryData['platillos'];
           for (var platilloData in platillos) {
-            menuItems.add(MenuItem(
-              categoryName,
-              platilloData['nombre'],
-              double.parse(platilloData['costo']),
-              platilloData['activo'],
-            ));
+            bool isActive = platilloData['activo'];
+
+            // Solo agrega el platillo si está activo
+            if (isActive) {
+              menuItems.add(MenuItem(
+                categoryName,
+                platilloData['nombre'],
+                double.parse(platilloData['costo']),
+                isActive,
+              ));
+            }
           }
         }
 
